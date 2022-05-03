@@ -13,7 +13,7 @@ The data file is stored inside the container in the `/root/data` directory, so i
 
 An example of using an external storage directory is shown below.
 
-`docker run -d -p9500:9000 -v/mnt/data/livetv:/root/data zjyl1994/livetv:1.1`
+docker run -d -p9500:9000 -v /livetvdata:/root/data --name livetv zjyl1994/livetv:1.1
 
 This will open a LiveTV! container on port 9500 that uses the `/mnt/data/livetv` directory as storage.
 
@@ -36,3 +36,20 @@ When you use Kodi or similar player, you can consider using the M3U file URL in 
 Youtube-dl document here => [https://github.com/ytdl-org/youtube-dl](https://github.com/ytdl-org/youtube-dl)
 
 Document Translate by [DeepL](https://www.deepl.com/zh/translator)
+
+**##update youtube-dl:**
+#原作者提供镜像中youtube-dl版本太低，必须要更新才能使用
+vi /etc/apk/repositories 
+#增加滚动版仓库
+http://dl-cdn.alpinelinux.org/alpine/edge/main
+http://dl-cdn.alpinelinux.org/alpine/edge/community
+
+
+通过运行以下命令更新存储库索引并开始从 Alpine Linux 稳定版本升级到滚动发布版本：
+$ sudo apk upgrade --update-cache --available
+或者，
+$ sudo apk upgrade -U -a
+升级任务完成后，重启系统：
+$ sudo sync
+$ sudo reboot
+
